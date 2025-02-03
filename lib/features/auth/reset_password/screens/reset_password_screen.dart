@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vidres_app/constants/color_constants.dart';
-import 'package:vidres_app/features/auth/login/controllers/login_controller.dart';
-import 'package:vidres_app/features/auth/register/screens/register_screen.dart';
+import 'package:vidres_app/features/auth/reset_password/controllers/reset_password_controller.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
-import 'package:vidres_app/utils/formatters/text_input_formatters.dart';
 import 'package:vidres_app/utils/screen_utils/app_paddings.dart';
 import 'package:vidres_app/utils/screen_utils/app_spacings.dart';
 import 'package:vidres_app/widgets/app_button.dart';
 import 'package:vidres_app/widgets/app_loading_overlay.dart';
 import 'package:vidres_app/widgets/app_text_form_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({
+class ResetPasswordScreen extends StatelessWidget {
+  ResetPasswordScreen({
     super.key,
+    required this.mobileNo,
   });
 
-  final LoginController _controller = Get.put(
-    LoginController(),
+  final String mobileNo;
+
+  final ResetPasswordController _controller = Get.put(
+    ResetPasswordController(),
   );
 
   @override
@@ -70,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: SingleChildScrollView(
                         child: Form(
-                          key: _controller.loginFormKey,
+                          key: _controller.resetPasswordFormKey,
                           child: Padding(
                             padding: AppPaddings.p14,
                             child: Column(
@@ -78,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 AppSpaces.v20,
                                 Text(
-                                  'Welcome Back!',
+                                  'Reset Password',
                                   style: TextStyles.kMediumPoppins(
                                     fontSize: FontSizes.k24FontSize,
                                   ),
@@ -88,48 +88,63 @@ class LoginScreen extends StatelessWidget {
                                   padding: AppPaddings.ph20,
                                   child: Column(
                                     children: [
-                                      AppTextFormField(
-                                        controller:
-                                            _controller.mobileNoController,
-                                        hintText: 'Mobile No.',
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Please enter a mobile number';
-                                          }
-                                          if (value.length != 10) {
-                                            return 'Please enter a 10-digit mobile number';
-                                          }
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.phone,
-                                        inputFormatters: [
-                                          MobileNumberInputFormatter(),
-                                          FilteringTextInputFormatter
-                                              .digitsOnly,
-                                          LengthLimitingTextInputFormatter(10),
-                                        ],
-                                      ),
-                                      AppSpaces.v20,
                                       Obx(
                                         () => AppTextFormField(
                                           controller:
-                                              _controller.passwordController,
-                                          hintText: 'Password',
+                                              _controller.newPasswordController,
+                                          hintText: 'New Password',
                                           validator: (value) {
                                             if (value!.isEmpty) {
-                                              return 'Please enter a password';
+                                              return 'Please enter a valid new password';
                                             }
                                             return null;
                                           },
-                                          isObscure:
-                                              _controller.obscuredText.value,
+                                          isObscure: _controller
+                                              .obscuredNewPassword.value,
                                           suffixIcon: IconButton(
                                             onPressed: () {
                                               _controller
-                                                  .togglePasswordVisibility();
+                                                  .toggleNewPasswordVisibility();
                                             },
                                             icon: Icon(
-                                              _controller.obscuredText.value
+                                              _controller
+                                                      .obscuredNewPassword.value
+                                                  ? Icons.visibility
+                                                  : Icons.visibility_off,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      AppSpaces.v16,
+                                      Obx(
+                                        () => AppTextFormField(
+                                          controller: _controller
+                                              .confirmPasswordController,
+                                          hintText: 'Confirm Password',
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Please confirm your password';
+                                            }
+                                            if (value !=
+                                                _controller
+                                                    .newPasswordController
+                                                    .text) {
+                                              return 'Passwords do not match';
+                                            }
+                                            return null;
+                                          },
+                                          isObscure: _controller
+                                              .obscuredConfirmPassword.value,
+                                          suffixIcon: IconButton(
+                                            onPressed: () {
+                                              _controller
+                                                  .toggleConfirmPasswordVisibility();
+                                            },
+                                            icon: Icon(
+                                              _controller
+                                                      .obscuredConfirmPassword
+                                                      .value
                                                   ? Icons.visibility
                                                   : Icons.visibility_off,
                                               size: 20,
@@ -145,40 +160,20 @@ class LoginScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     AppButton(
-                                      title: 'Login',
+                                      title: 'Reset Password',
                                       onPressed: () {
-                                        _controller.hasAttemptedLogin.value =
+                                        _controller.hasAttemptedSubmit.value =
                                             true;
                                         if (_controller
-                                            .loginFormKey.currentState!
+                                            .resetPasswordFormKey.currentState!
                                             .validate()) {
-                                          _controller.loginUser();
+                                          _controller.resetPassword(
+                                            mobileNumber: mobileNo,
+                                          );
                                         }
                                       },
                                       buttonWidth: 0.75.screenWidth,
                                     ),
-                                  ],
-                                ),
-                                AppSpaces.v20,
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'OR',
-                                      style: TextStyles.kMediumPoppins(),
-                                    ),
-                                    AppSpaces.v20,
-                                    AppButton(
-                                      title: 'Register',
-                                      buttonWidth: 0.75.screenWidth,
-                                      buttonColor: kColorBackground,
-                                      onPressed: () {
-                                        Get.to(
-                                          () => RegisterScreen(),
-                                        );
-                                      },
-                                    ),
-                                    Row(),
                                   ],
                                 ),
                               ],

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vidres_app/constants/color_constants.dart';
-import 'package:vidres_app/features/auth/login/controllers/login_controller.dart';
-import 'package:vidres_app/features/auth/register/screens/register_screen.dart';
+import 'package:vidres_app/features/auth/register/controllers/register_controller.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
@@ -14,13 +13,13 @@ import 'package:vidres_app/widgets/app_button.dart';
 import 'package:vidres_app/widgets/app_loading_overlay.dart';
 import 'package:vidres_app/widgets/app_text_form_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({
     super.key,
   });
 
-  final LoginController _controller = Get.put(
-    LoginController(),
+  final RegisterController _controller = Get.put(
+    RegisterController(),
   );
 
   @override
@@ -70,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: SingleChildScrollView(
                         child: Form(
-                          key: _controller.loginFormKey,
+                          key: _controller.registerFormKey,
                           child: Padding(
                             padding: AppPaddings.p14,
                             child: Column(
@@ -78,23 +77,64 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 AppSpaces.v20,
                                 Text(
-                                  'Welcome Back!',
+                                  'Create Account',
                                   style: TextStyles.kMediumPoppins(
                                     fontSize: FontSizes.k24FontSize,
                                   ),
                                 ),
-                                AppSpaces.v40,
+                                AppSpaces.v30,
                                 Padding(
                                   padding: AppPaddings.ph20,
                                   child: Column(
                                     children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: 0.4.screenWidth,
+                                            child: AppTextFormField(
+                                              controller: _controller
+                                                  .firstNameController,
+                                              hintText: 'First Name',
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  return 'Please enter your first name';
+                                                }
+                                                return null;
+                                              },
+                                              inputFormatters: [
+                                                TitleCaseTextInputFormatter(),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 0.4.screenWidth,
+                                            child: AppTextFormField(
+                                              controller: _controller
+                                                  .lastNameController,
+                                              hintText: 'Last Name',
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  return 'Please enter your last name';
+                                                }
+                                                return null;
+                                              },
+                                              inputFormatters: [
+                                                TitleCaseTextInputFormatter(),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      AppSpaces.v12,
                                       AppTextFormField(
                                         controller:
-                                            _controller.mobileNoController,
-                                        hintText: 'Mobile No.',
+                                            _controller.mobileNumberController,
+                                        hintText: 'Mobile Number',
                                         validator: (value) {
                                           if (value!.isEmpty) {
-                                            return 'Please enter a mobile number';
+                                            return 'Please enter your mobile number';
                                           }
                                           if (value.length != 10) {
                                             return 'Please enter a 10-digit mobile number';
@@ -109,7 +149,7 @@ class LoginScreen extends StatelessWidget {
                                           LengthLimitingTextInputFormatter(10),
                                         ],
                                       ),
-                                      AppSpaces.v20,
+                                      AppSpaces.v12,
                                       Obx(
                                         () => AppTextFormField(
                                           controller:
@@ -121,15 +161,51 @@ class LoginScreen extends StatelessWidget {
                                             }
                                             return null;
                                           },
-                                          isObscure:
-                                              _controller.obscuredText.value,
+                                          isObscure: _controller
+                                              .obscuredNewPassword.value,
                                           suffixIcon: IconButton(
                                             onPressed: () {
                                               _controller
-                                                  .togglePasswordVisibility();
+                                                  .toggleNewPasswordVisibility();
                                             },
                                             icon: Icon(
-                                              _controller.obscuredText.value
+                                              _controller
+                                                      .obscuredNewPassword.value
+                                                  ? Icons.visibility
+                                                  : Icons.visibility_off,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      AppSpaces.v12,
+                                      Obx(
+                                        () => AppTextFormField(
+                                          controller: _controller
+                                              .confirmPasswordController,
+                                          hintText: 'Confirm Password',
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Please confirm your password';
+                                            }
+                                            if (value !=
+                                                _controller
+                                                    .passwordController.text) {
+                                              return 'Passwords do not match';
+                                            }
+                                            return null;
+                                          },
+                                          isObscure: _controller
+                                              .obscuredConfirmPassword.value,
+                                          suffixIcon: IconButton(
+                                            onPressed: () {
+                                              _controller
+                                                  .toggleConfirmPasswordVisibility();
+                                            },
+                                            icon: Icon(
+                                              _controller
+                                                      .obscuredConfirmPassword
+                                                      .value
                                                   ? Icons.visibility
                                                   : Icons.visibility_off,
                                               size: 20,
@@ -140,45 +216,23 @@ class LoginScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                AppSpaces.v40,
+                                AppSpaces.v30,
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     AppButton(
-                                      title: 'Login',
+                                      title: 'Register',
                                       onPressed: () {
-                                        _controller.hasAttemptedLogin.value =
+                                        _controller.hasAttemptedSubmit.value =
                                             true;
                                         if (_controller
-                                            .loginFormKey.currentState!
+                                            .registerFormKey.currentState!
                                             .validate()) {
-                                          _controller.loginUser();
+                                          _controller.registerUser();
                                         }
                                       },
                                       buttonWidth: 0.75.screenWidth,
                                     ),
-                                  ],
-                                ),
-                                AppSpaces.v20,
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'OR',
-                                      style: TextStyles.kMediumPoppins(),
-                                    ),
-                                    AppSpaces.v20,
-                                    AppButton(
-                                      title: 'Register',
-                                      buttonWidth: 0.75.screenWidth,
-                                      buttonColor: kColorBackground,
-                                      onPressed: () {
-                                        Get.to(
-                                          () => RegisterScreen(),
-                                        );
-                                      },
-                                    ),
-                                    Row(),
                                   ],
                                 ),
                               ],

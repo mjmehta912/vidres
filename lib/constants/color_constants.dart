@@ -9,6 +9,7 @@ const Color kColorGrey = Color(0xFF878787);
 const Color kColorLightGrey = Color(0xFFE5E5E5);
 const Color kColorRed = Color(0xFFFF0000);
 const Color kColorButton = Color(0xFFBBB2CC);
+const Color kColorBlue = Colors.blue;
 
 const kColorCard1Primary = Color(0xFFBBB2CC);
 const kColorCard1Secondary = Color(0xFF453A5F);

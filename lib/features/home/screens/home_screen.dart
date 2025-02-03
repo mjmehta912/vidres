@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vidres_app/constants/color_constants.dart';
-import 'package:vidres_app/features/auth/login/screens/login_screen.dart';
+import 'package:vidres_app/features/auth/reset_password/screens/reset_password_screen.dart';
+import 'package:vidres_app/features/home/controllers/home_controller.dart';
 import 'package:vidres_app/features/home/widgets/home_card.dart';
-import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/screen_utils/app_paddings.dart';
 import 'package:vidres_app/utils/screen_utils/app_spacings.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+  HomeScreen({
     super.key,
   });
 
-  // final HomeController _controller = Get.put(
-  //   HomeController(),
-  // );
+  final HomeController _controller = Get.put(
+    HomeController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +34,12 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Ceramic Inventory',
-                      style: TextStyles.kRegularPoppins(
-                        fontSize: FontSizes.k24FontSize,
+                    Obx(
+                      () => Text(
+                        _controller.company.value,
+                        style: TextStyles.kRegularPoppins(),
                       ),
                     ),
-                    AppSpaces.v20,
                     Row(),
                   ],
                 ),
@@ -103,12 +102,24 @@ class HomeScreen extends StatelessWidget {
                           HomeCard(
                             primaryColor: kColorCard2Primary,
                             secondaryColor: kColorCard2Secondary,
+                            title: 'Reset Password',
+                            subTitle: 'Reset password of your account.',
+                            onTap: () {
+                              Get.to(
+                                () => ResetPasswordScreen(
+                                  mobileNo: _controller.mobileNo.value,
+                                ),
+                              );
+                            },
+                          ),
+                          AppSpaces.v6,
+                          HomeCard(
+                            primaryColor: kColorBackground,
+                            secondaryColor: kColorTextPrimary,
                             title: 'Logout',
                             subTitle: 'Log out of your account.',
                             onTap: () {
-                              Get.offAll(
-                                () => LoginScreen(),
-                              );
+                              _controller.logoutUser();
                             },
                           ),
                         ],

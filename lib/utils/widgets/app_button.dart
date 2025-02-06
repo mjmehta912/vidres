@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vidres_app/constants/color_constants.dart';
+import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/screen_utils/app_paddings.dart';

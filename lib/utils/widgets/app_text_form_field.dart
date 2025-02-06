@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vidres_app/constants/color_constants.dart';
+import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
@@ -66,6 +66,16 @@ class AppTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyles.kRegularPoppins(
+          fontSize: FontSizes.k16FontSize,
+          color: kColorGrey,
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        floatingLabelStyle: TextStyles.kRegularPoppins(
+          fontSize: FontSizes.k16FontSize,
+          color: kColorTextPrimary,
+        ),
+        labelText: hintText,
+        labelStyle: TextStyles.kRegularPoppins(
           fontSize: FontSizes.k16FontSize,
           color: kColorGrey,
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vidres_app/constants/color_constants.dart';
+import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/features/auth/login/screens/login_screen.dart';
 import 'package:vidres_app/features/home/screens/home_screen.dart';
 import 'package:vidres_app/styles/font_sizes.dart';

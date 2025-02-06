@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String kBaseUrl = 'http://vidres.jineecs.in/api';
+  static const String kBaseUrl = 'http://192.168.0.135:5253/api';
 
   static Future<dynamic> getRequest({
     required String endpoint,
@@ -34,16 +34,41 @@ class ApiService {
 
       if (response.statusCode == 200) {
         return json.decode(response.body);
-      } else {
-        var errorResponse = response.body.isNotEmpty
-            ? json.decode(response.body)
-            : {'error': 'Unknown error occurred'};
-
-        throw errorResponse['error'] ??
-            'Failed to load. Please try again later.';
       }
+
+      var errorResponse = response.body.isNotEmpty
+          ? json.decode(response.body)
+          : {
+              'error': 'Unknown error occurred',
+            };
+
+      if (response.statusCode == 403) {
+        throw {
+          'status': 403,
+          'message': errorResponse['error'],
+        };
+      }
+
+      if (response.statusCode == 402) {
+        throw {
+          'status': 402,
+          'message': errorResponse['error'],
+        };
+      }
+
+      throw {
+        'status': response.statusCode,
+        'message': errorResponse['error'] ??
+            'Failed to process request. Please try again later.',
+      };
     } catch (e) {
-      throw e.toString();
+      if (e is Map<String, dynamic>) {
+        rethrow;
+      }
+      throw {
+        'status': 500,
+        'message': e.toString(),
+      };
     }
   }
 
@@ -90,7 +115,9 @@ class ApiService {
 
       var errorResponse = response.body.isNotEmpty
           ? json.decode(response.body)
-          : {'error': 'Unknown error occurred'};
+          : {
+              'error': 'Unknown error occurred',
+            };
 
       if (response.statusCode == 403) {
         throw {

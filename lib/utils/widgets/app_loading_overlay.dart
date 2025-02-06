@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vidres_app/constants/color_constants.dart';
+import 'package:vidres_app/utils/constants/color_constants.dart';
 
 class AppLoadingOverlay extends StatelessWidget {
   final bool isLoading;

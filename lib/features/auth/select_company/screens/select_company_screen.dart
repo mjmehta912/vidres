@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vidres_app/constants/color_constants.dart';
+import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/features/auth/login/models/company_dm.dart';
 import 'package:vidres_app/features/auth/select_company/controllers/select_company_controller.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
@@ -8,9 +8,9 @@ import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
 import 'package:vidres_app/utils/screen_utils/app_paddings.dart';
 import 'package:vidres_app/utils/screen_utils/app_spacings.dart';
-import 'package:vidres_app/widgets/app_button.dart';
-import 'package:vidres_app/widgets/app_dropdown.dart';
-import 'package:vidres_app/widgets/app_loading_overlay.dart';
+import 'package:vidres_app/utils/widgets/app_button.dart';
+import 'package:vidres_app/utils/widgets/app_dropdown.dart';
+import 'package:vidres_app/utils/widgets/app_loading_overlay.dart';
 
 class SelectCompanyScreen extends StatefulWidget {
   const SelectCompanyScreen({

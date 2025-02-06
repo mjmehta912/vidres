@@ -1,6 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:vidres_app/constants/color_constants.dart';
+import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
@@ -53,6 +53,16 @@ class AppDropdown extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyles.kRegularPoppins(
+            fontSize: FontSizes.k16FontSize,
+            color: kColorGrey,
+          ),
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          floatingLabelStyle: TextStyles.kRegularPoppins(
+            fontSize: FontSizes.k16FontSize,
+            color: kColorTextPrimary,
+          ),
+          labelText: hintText,
+          labelStyle: TextStyles.kRegularPoppins(
             fontSize: FontSizes.k16FontSize,
             color: kColorGrey,
           ),
@@ -121,6 +131,16 @@ class AppDropdown extends StatelessWidget {
           decoration: InputDecoration(
             hintText: searchHintText ?? 'Search',
             hintStyle: TextStyles.kRegularPoppins(
+              fontSize: FontSizes.k16FontSize,
+              color: kColorGrey,
+            ),
+            floatingLabelBehavior: FloatingLabelBehavior.auto,
+            floatingLabelStyle: TextStyles.kRegularPoppins(
+              fontSize: FontSizes.k16FontSize,
+              color: kColorTextPrimary,
+            ),
+            labelText: hintText,
+            labelStyle: TextStyles.kRegularPoppins(
               fontSize: FontSizes.k16FontSize,
               color: kColorGrey,
             ),

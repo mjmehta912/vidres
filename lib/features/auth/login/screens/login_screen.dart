@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:vidres_app/constants/color_constants.dart';
+import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/features/auth/login/controllers/login_controller.dart';
 import 'package:vidres_app/features/auth/register/screens/register_screen.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
@@ -10,9 +10,9 @@ import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
 import 'package:vidres_app/utils/formatters/text_input_formatters.dart';
 import 'package:vidres_app/utils/screen_utils/app_paddings.dart';
 import 'package:vidres_app/utils/screen_utils/app_spacings.dart';
-import 'package:vidres_app/widgets/app_button.dart';
-import 'package:vidres_app/widgets/app_loading_overlay.dart';
-import 'package:vidres_app/widgets/app_text_form_field.dart';
+import 'package:vidres_app/utils/widgets/app_button.dart';
+import 'package:vidres_app/utils/widgets/app_loading_overlay.dart';
+import 'package:vidres_app/utils/widgets/app_text_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({

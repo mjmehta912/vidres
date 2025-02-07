@@ -125,7 +125,11 @@ class WipEntryScreen extends StatelessWidget {
                                           .selectedItemName.value.isNotEmpty
                                       ? _controller.selectedItemName.value
                                       : null,
+                                  enabled: _controller.cards.isEmpty,
                                   validatorText: 'Please select a material.',
+                                  fillColor: _controller.cards.isEmpty
+                                      ? kColorWhite
+                                      : kColorLightGrey,
                                 ),
                               ),
                             ),
@@ -160,6 +164,12 @@ class WipEntryScreen extends StatelessWidget {
 
                                   return Card(
                                     color: kColorWhite,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(
+                                        color: kColorTextPrimary,
+                                      ),
+                                    ),
                                     child: Padding(
                                       padding: AppPaddings.p10,
                                       child: Row(

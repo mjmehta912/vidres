@@ -131,6 +131,7 @@ class WipEntryRepo {
 
   static Future<Map<String, dynamic>> validateWip({
     required String cardNo,
+    required String iCode,
   }) async {
     String? token = await SecureStorageHelper.read('token');
 
@@ -139,6 +140,7 @@ class WipEntryRepo {
         endpoint: '/MobileEntry/validateWip',
         queryParams: {
           'CardNo': cardNo,
+          'ICODE': iCode,
         },
         token: token,
       );

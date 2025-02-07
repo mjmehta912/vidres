@@ -9,6 +9,7 @@ import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/utils/dialogs/app_dialogs.dart';
+import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
 import 'package:vidres_app/utils/helpers/sound_helper.dart';
 import 'package:vidres_app/utils/screen_utils/app_paddings.dart';
 import 'package:vidres_app/utils/screen_utils/app_spacings.dart';
@@ -276,18 +277,25 @@ class GodownTransferController extends GetxController {
                   children: [
                     Text(
                       e['message'],
-                      style: TextStyles.kMediumPoppins(
+                      style: TextStyles.kRegularPoppins(
                         color: kColorRed,
                         fontSize: FontSizes.k18FontSize,
                       ),
                     ),
                     AppSpaces.v20,
-                    AppButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      buttonColor: kColorCard5Primary,
-                      title: 'OK',
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        AppButton(
+                          buttonWidth: 0.4.screenWidth,
+                          buttonHeight: 40,
+                          onPressed: () {
+                            Get.back();
+                          },
+                          buttonColor: kColorCard5Primary,
+                          title: 'OK',
+                        ),
+                      ],
                     ),
                   ],
                 ),

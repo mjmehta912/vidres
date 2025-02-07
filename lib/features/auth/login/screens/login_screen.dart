@@ -153,6 +153,8 @@ class LoginScreen extends StatelessWidget {
                                             .loginFormKey.currentState!
                                             .validate()) {
                                           _controller.loginUser();
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
                                         }
                                       },
                                       buttonWidth: 0.75.screenWidth,

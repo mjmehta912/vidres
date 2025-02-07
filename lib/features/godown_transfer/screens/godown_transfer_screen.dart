@@ -154,6 +154,7 @@ class GodownTransferScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            AppSpaces.v14,
                             Obx(
                               () => ListView.builder(
                                 shrinkWrap: true,
@@ -164,6 +165,12 @@ class GodownTransferScreen extends StatelessWidget {
 
                                   return Card(
                                     color: kColorWhite,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(
+                                        color: kColorTextPrimary,
+                                      ),
+                                    ),
                                     child: Padding(
                                       padding: AppPaddings.p10,
                                       child: Row(

@@ -66,9 +66,21 @@ class HomeController extends GetxController {
     String scannedData,
     QRViewController controller,
   ) async {
+    String gdCode =
+        await SecureStorageHelper.read('selected_godown_code') ?? '';
+
+    if (gdCode.isEmpty) {
+      showErrorSnackbar(
+        'Error',
+        'Please select a godown in the app settings to continue.',
+      );
+      return;
+    }
+
     try {
       final response = await IssueEntryRepo.validateIssue(
         cardNo: scannedData,
+        gdCode: gdCode,
       );
 
       if (response['message'] != null) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vidres_app/features/godown_transfer/screens/godown_transfer_screen.dart';
-import 'package:vidres_app/features/settings/screens/settings_screen.dart';
+import 'package:vidres_app/features/settings/screens/app_settings_screen.dart';
 import 'package:vidres_app/features/wip_entry/screens/wip_entry_screen.dart';
 import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/features/home/controllers/home_controller.dart';
@@ -106,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                             subTitle: 'Adjust app preferences.',
                             onTap: () {
                               Get.to(
-                                () => SettingsScreen(
+                                () => AppSettingsScreen(
                                   mobileNo: _controller.mobileNo.value,
                                 ),
                               );

@@ -259,12 +259,18 @@ class WipEntryController extends GetxController {
           iCode: selectedItemCode.value,
         );
 
-        if (response['Stock'] != null) {
+        if (response['Stock'] != null && response['Stock'] > 0) {
           SoundHelper.playSuccessSound();
           cards.add(
             {
               'CardNo': scannedData,
             },
+          );
+        } else {
+          SoundHelper.playFailureSound();
+          showAlertSnackbar(
+            'Not Available',
+            'Item not available in the godown',
           );
         }
       }

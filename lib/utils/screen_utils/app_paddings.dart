@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
 
 class AppPaddings {
-  //* All Side Padding
+  //! All Side Padding
   static EdgeInsets get p2 => EdgeInsets.all(
         2.appWidth,
       );
@@ -64,7 +64,7 @@ class AppPaddings {
         40.appWidth,
       );
 
-//* Horizontal Padding
+//! Horizontal Padding
   static EdgeInsets get ph2 => EdgeInsets.symmetric(
         horizontal: 2.appWidth,
       );
@@ -126,7 +126,7 @@ class AppPaddings {
         horizontal: 40.appWidth,
       );
 
-//* Vertical Padding
+//! Vertical Padding
   static EdgeInsets get pv2 => EdgeInsets.symmetric(
         vertical: 2.appHeight,
       );
@@ -188,7 +188,7 @@ class AppPaddings {
         vertical: 40.appHeight,
       );
 
-  //* Combined Horizontal and Vertical Padding
+  //! Combined Horizontal and Vertical Padding
   static EdgeInsets combined({
     required double horizontal,
     required double vertical,
@@ -199,7 +199,7 @@ class AppPaddings {
     );
   }
 
-  //* Custom Padding
+  //! Custom Padding
   static EdgeInsets custom({
     double left = 0,
     double top = 0,

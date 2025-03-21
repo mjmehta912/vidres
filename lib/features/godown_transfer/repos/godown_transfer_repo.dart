@@ -168,8 +168,6 @@ class GodownTransferRepo {
         'CARDS': cards,
       };
 
-      print(requestBody);
-
       var response = await ApiService.postRequest(
         endpoint: '/MobileEntry/godownTransfer',
         requestBody: requestBody,

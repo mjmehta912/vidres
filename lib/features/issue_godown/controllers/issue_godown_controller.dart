@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:vidres_app/features/godown_transfer/models/godown_dm.dart';
-import 'package:vidres_app/features/settings/repos/app_settings_repo.dart';
+import 'package:vidres_app/features/issue_godown/repos/issue_godown_repo.dart';
 import 'package:vidres_app/utils/dialogs/app_dialogs.dart';
 import 'package:vidres_app/utils/helpers/secure_storage_helper.dart';
 
-class AppSettingsController extends GetxController {
+class IssueGodownController extends GetxController {
   var isLoading = false.obs;
   var toGodowns = <GodownDm>[].obs;
   var toGodownNames = <String>[].obs;
@@ -29,7 +29,7 @@ class AppSettingsController extends GetxController {
     try {
       isLoading.value = true;
 
-      final fetchedToGodowns = await AppSettingsRepo.getToGodowns();
+      final fetchedToGodowns = await IssueGodownRepo.getToGodowns();
 
       toGodowns.assignAll(fetchedToGodowns);
       toGodownNames.assignAll(

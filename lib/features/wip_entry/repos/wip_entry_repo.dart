@@ -168,8 +168,6 @@ class WipEntryRepo {
         'CARDS': cards,
       };
 
-      print(requestBody);
-
       var response = await ApiService.postRequest(
         endpoint: '/MobileEntry/wip',
         requestBody: requestBody,

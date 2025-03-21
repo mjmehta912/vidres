@@ -4,7 +4,7 @@ import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
 class AppSpaces {
   static SizedBox get shrink => const SizedBox.shrink();
 
-  //* Horizontal Spacings
+  //! Horizontal Spacings
   static SizedBox get h2 => SizedBox(
         width: 2.appWidth,
       );
@@ -97,7 +97,7 @@ class AppSpaces {
         width: width.appWidth,
       );
 
-  //* Vertical Spacings
+  //! Vertical Spacings
   static SizedBox get v2 => SizedBox(
         height: 2.appHeight,
       );

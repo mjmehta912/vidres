@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vidres_app/features/auth/reset_password/screens/reset_password_screen.dart';
-import 'package:vidres_app/features/settings/controllers/app_settings_controller.dart';
+import 'package:vidres_app/features/issue_godown/controllers/issue_godown_controller.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/constants/color_constants.dart';
@@ -11,16 +10,16 @@ import 'package:vidres_app/utils/widgets/app_appbar.dart';
 import 'package:vidres_app/utils/widgets/app_dropdown.dart';
 import 'package:vidres_app/utils/widgets/app_loading_overlay.dart';
 
-class AppSettingsScreen extends StatelessWidget {
-  AppSettingsScreen({
+class IssueGodownScreen extends StatelessWidget {
+  IssueGodownScreen({
     super.key,
     required this.mobileNo,
   });
 
   final String mobileNo;
 
-  final AppSettingsController _controller = Get.put(
-    AppSettingsController(),
+  final IssueGodownController _controller = Get.put(
+    IssueGodownController(),
   );
 
   @override
@@ -30,7 +29,7 @@ class AppSettingsScreen extends StatelessWidget {
         Scaffold(
           backgroundColor: kColorWhite,
           appBar: AppAppbar(
-            title: 'App Settings',
+            title: 'Issue Godown',
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back_ios,
@@ -46,39 +45,6 @@ class AppSettingsScreen extends StatelessWidget {
             padding: AppPaddings.p14,
             child: Column(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.to(
-                      () => ResetPasswordScreen(
-                        mobileNo: mobileNo,
-                      ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 0,
-                    color: kColorWhite,
-                    child: Padding(
-                      padding: AppPaddings.p10,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Reset Password',
-                            style: TextStyles.kLightPoppins(
-                              fontSize: FontSizes.k18FontSize,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 20,
-                            color: kColorTextPrimary,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Divider(),
                 GestureDetector(
                   onTap: () async {
                     await _controller.getToGodowns();

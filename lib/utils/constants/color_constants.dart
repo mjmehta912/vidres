@@ -28,3 +28,6 @@ const kColorCard5Secondary = Color(0xFF65461D);
 
 const kColorCard6Primary = Color(0xFFB0BBBC);
 const kColorCard6Secondary = Color(0xFF3B4647);
+
+const kColorCard7Primary = Color(0xFFD2B59C);
+const kColorCard7Secondary = Color(0xFF5F3D2E);

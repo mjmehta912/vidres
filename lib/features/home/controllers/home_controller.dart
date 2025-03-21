@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:vidres_app/features/auth/login/screens/login_screen.dart';
+import 'package:vidres_app/features/home/repos/home_repo.dart';
 import 'package:vidres_app/features/issue_entry/repos/issue_entry_repo.dart';
 import 'package:vidres_app/features/issue_entry/screens/issue_entry_qr_scanner_screen.dart';
+import 'package:vidres_app/features/user_settings/user_rights/models/user_access_dm.dart';
 import 'package:vidres_app/utils/dialogs/app_dialogs.dart';
 import 'package:vidres_app/utils/helpers/secure_storage_helper.dart';
 import 'package:vidres_app/utils/helpers/sound_helper.dart';
@@ -11,6 +13,7 @@ class HomeController extends GetxController {
   var isLoading = false.obs;
   var company = ''.obs;
   var mobileNo = ''.obs;
+  var menuAccess = <MenuAccessDm>[].obs;
 
   @override
   void onInit() async {
@@ -21,6 +24,30 @@ class HomeController extends GetxController {
 
     final storedMobileNo = await SecureStorageHelper.read('mobileNo');
     mobileNo.value = storedMobileNo ?? '';
+
+    await getUserAccess();
+  }
+
+  Future<void> getUserAccess() async {
+    try {
+      isLoading.value = true;
+      String? userId = await SecureStorageHelper.read(
+        'userId',
+      );
+
+      final fetchedUserAccess = await HomeRepo.getUserAccess(
+        userId: int.parse(userId!),
+      );
+
+      menuAccess.assignAll(fetchedUserAccess.menuAccess);
+    } catch (e) {
+      showErrorSnackbar(
+        'Error',
+        e.toString(),
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> logoutUser() async {

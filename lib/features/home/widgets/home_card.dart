@@ -24,62 +24,67 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Stack(
-        children: [
-          Card(
-            elevation: 5,
-            color: primaryColor,
-            child: Padding(
-              padding: AppPaddings.p10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: onTap,
+          child: Stack(
+            children: [
+              Card(
+                elevation: 5,
+                color: primaryColor,
+                child: Padding(
+                  padding: AppPaddings.p10,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        title,
-                        style: TextStyles.kSemiBoldPoppins(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            style: TextStyles.kSemiBoldPoppins(),
+                          ),
+                          AppSpaces.v10,
+                          Text(
+                            subTitle,
+                            style: TextStyles.kRegularPoppins(
+                              fontSize: FontSizes.k14FontSize,
+                            ),
+                          ),
+                        ],
                       ),
-                      AppSpaces.v10,
-                      Text(
-                        subTitle,
-                        style: TextStyles.kRegularPoppins(
-                          fontSize: FontSizes.k14FontSize,
+                      CircleAvatar(
+                        radius: 12.5,
+                        backgroundColor: secondaryColor,
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 10,
+                          color: primaryColor,
                         ),
                       ),
                     ],
                   ),
-                  CircleAvatar(
-                    radius: 12.5,
-                    backgroundColor: secondaryColor,
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 10,
-                      color: primaryColor,
-                    ),
+                ),
+              ),
+              Positioned(
+                right: 60,
+                top: 0,
+                bottom: 0,
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: Image.asset(
+                    image,
+                    fit: BoxFit.contain,
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-          Positioned(
-            right: 60,
-            top: 0,
-            bottom: 0,
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: Image.asset(
-                image,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+        AppSpaces.v8,
+      ],
     );
   }
 }

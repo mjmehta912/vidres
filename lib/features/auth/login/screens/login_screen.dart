@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vidres_app/utils/constants/color_constants.dart';
 import 'package:vidres_app/features/auth/login/controllers/login_controller.dart';
-import 'package:vidres_app/features/auth/register/screens/register_screen.dart';
 import 'package:vidres_app/styles/font_sizes.dart';
 import 'package:vidres_app/styles/text_styles.dart';
 import 'package:vidres_app/utils/extensions/app_size_extensions.dart';
@@ -161,28 +160,28 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                AppSpaces.v20,
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'OR',
-                                      style: TextStyles.kMediumPoppins(),
-                                    ),
-                                    AppSpaces.v20,
-                                    AppButton(
-                                      title: 'Register',
-                                      buttonWidth: 0.75.screenWidth,
-                                      buttonColor: kColorBackground,
-                                      onPressed: () {
-                                        Get.to(
-                                          () => RegisterScreen(),
-                                        );
-                                      },
-                                    ),
-                                    Row(),
-                                  ],
-                                ),
+                                // AppSpaces.v20,
+                                // Column(
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   children: [
+                                //     Text(
+                                //       'OR',
+                                //       style: TextStyles.kMediumPoppins(),
+                                //     ),
+                                //     AppSpaces.v20,
+                                //     AppButton(
+                                //       title: 'Register',
+                                //       buttonWidth: 0.75.screenWidth,
+                                //       buttonColor: kColorBackground,
+                                //       onPressed: () {
+                                //         Get.to(
+                                //           () => RegisterScreen(),
+                                //         );
+                                //       },
+                                //     ),
+                                //     Row(),
+                                //   ],
+                                // ),
                               ],
                             ),
                           ),

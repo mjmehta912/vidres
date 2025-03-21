@@ -2,7 +2,7 @@ import 'package:vidres_app/features/godown_transfer/models/godown_dm.dart';
 import 'package:vidres_app/services/api_services.dart';
 import 'package:vidres_app/utils/helpers/secure_storage_helper.dart';
 
-class AppSettingsRepo {
+class IssueGodownRepo {
   static Future<List<GodownDm>> getToGodowns() async {
     String? token = await SecureStorageHelper.read(
       'token',
